@@ -31,6 +31,9 @@ Questo documento definisce lo stile architetturale e la metodologia di sviluppo 
 15. Rischi operativi e sfide pratiche
 16. Il percorso di crescita
 17. Il contratto del team
+18. Boost allo sviluppo con agenti LLM
+19. AI-Augmented Development: Agenti e Architettura
+20. Bibliografia
 
 ---
 
@@ -959,7 +962,7 @@ Il manifesto puo' essere modificato. Qualsiasi proposta viene discussa in team d
 
 ---
 
-### 19 Boost allo sviluppo con agenti LLM
+### 18 Boost allo sviluppo con agenti LLM
 
 Il manifesto fornisce un "boost" naturale agli agenti LLM per tre ragioni principali:
 
@@ -967,11 +970,13 @@ Il manifesto fornisce un "boost" naturale agli agenti LLM per tre ragioni princi
 - **Purezza del Dominio:** La regola delle dipendenze unidirezionale (P2) e la purezza del nucleo del dominio (6.2) garantiscono che la logica di business sia espressa in linguaggio puro (Plain Old Objects), privo di boilerplate di framework. Questo permette agli LLM di generare e ragionare sulla logica di business in modo molto più accurato.
 - **Spec-Driven Development:** L'uso di specifiche in linguaggio naturale (BDD) come driver per i test (7.2, 7.4) crea un ponte perfetto tra l'input umano e il codice. Un LLM può facilmente trasformare una specifica "Dato-Quando-Allora" in uno scheletro di test e nella relativa implementazione.
 
-------
+---
 
-## 19. AI-Augmented Development: Agenti e Architettura
+### 19. AI-Augmented Development: Agenti e Architettura
 
 Questa sezione definisce come il team integra gli agenti LLM nel flusso di lavoro per accelerare la consegna senza compromettere la qualità o l'integrità del manifesto.
+
+------
 
 ### 19.1 L'Agente come "Junior Partner" nel Pair Programming
 
@@ -980,12 +985,16 @@ L'uso di agenti LLM non sostituisce il Pair Programming umano, ma lo integra. L'
 - **Generazione dei Test:** L'agente genera i test unitari (TDD) e di integrazione (BDD) partendo dalle specifiche scritte dal Tech Lead e dal Product Owner.
 - **Rilevamento violazioni:** L'agente viene istruito con il manifesto per segnalare proattivamente tentativi di accoppiamento tra moduli o perdite di astrazione (es. logica di infrastruttura nel dominio).
 
+------
+
 ### 19.2 Prompt Engineering basato sul Dominio
 
 Per massimizzare l'efficacia degli agenti, i prompt devono riflettere la struttura del Modular Monolith:
 
 - **Context Injection per Modulo:** Quando si lavora su un modulo, l'agente deve ricevere solo l'interfaccia pubblica (P1) e il nucleo del dominio (6.2) del modulo interessato.
 - **Uso del linguaggio Ubiquo:** I prompt devono utilizzare esclusivamente i termini definiti nel linguaggio del dominio per garantire che il codice generato sia coerente con il modello mentale del team.
+
+------
 
 ### 19.3 Automazione del Refactoring e Debito Tecnico
 
@@ -994,11 +1003,86 @@ Gli agenti LLM vengono utilizzati per eseguire refactoring meccanici guidati dal
 - **Modernizzazione e Pulizia:** L'AI può essere incaricata di estrarre Value Object o di separare Query e Comandi (P4) in moduli legacy o meno rifiniti, garantendo la sicurezza tramite l'esecuzione automatica della pipeline.
 - **Rimozione Feature Flag:** Gli agenti possono automatizzare la rimozione dei branch condizionali legati a feature flag obsoleti (8.3) una volta che la funzionalità è diventata stabile.
 
+------
+
 ### 19.4 Integrità Architetturale e Allucinazioni
 
 Il team accetta proposte dall'AI solo se verificate dalla pipeline (10.2). Se l'agente propone una soluzione che viola la regola delle dipendenze (P2) o che accede direttamente ai dati di un altro modulo (6.4), l'umano ha il dovere di scartare la proposta e istruire l'agente sul motivo del rifiuto, rafforzando il contratto operativo del team.
 
+------
 
+### 19.5 Configurazione dell'IDE Agentico (Windsurf)
+
+Per garantire che l'automazione non degradi la qualità architettonica, l'IDE deve essere configurato con regole che agiscano da "vincolo fisico" per l'agente LLM. Questa configurazione trasforma il manifesto in un set di istruzioni operative non negoziabili.
+
+------
+
+### 19.5.1 Definizione delle regole locali (.windsurfrules)
+
+Nella radice del progetto deve essere presente un file .windsurfrules per istruire l'agente sul comportamento atteso e sui limiti invalicabili.
+
+------
+
+### 19.5.2 Modular Monolith Architecture Manifesto - AI Rules
+
+Tu agisci come un esperto Tech Lead. Ogni tua azione deve rispettare il Manifesto v5.1.
+
+#### 1. Regole Architetturali Inviolabili
+
+- **Confini (P1):** È vietato l'accesso diretto ai file interni di un modulo. Usa solo 'interfaccia-pubblica'.
+- **Purezza (P2):** Il codice in 'nucleo/dominio' deve essere privo di annotazioni di framework o librerie esterne.
+- **Eventi (P3):** Ogni evento deve includere evento_id, correlazione_id e causazione_id.
+- **CQRS (P4):** Separa fisicamente i Comandi dalle Query nelle porte di ingresso.
+
+#### 2. Standard di Progetto
+
+- **Struttura:** Segui fedelmente la gerarchia definita nella sezione 12.1.
+- **Esempio:** Prima di generare codice, analizza il modulo '_riferimento' come gold standard.
+- **Qualità:** Rifiuta o rifattorizza funzioni con Complessità Cognitiva > 15.
+
+#### 3. Workflow Operativo
+
+1. Analizza la specifica BDD in 'test/specifiche'.
+2. Applica il ciclo TDD: scrivi il test unitario nel dominio prima dell'implementazione.
+3. Assicurati che ogni modifica sia coperta da test e che il mutation score del dominio sia >= 80%.
+19.5.2 Master System Prompt per lo Sviluppo Assistito
+Questo prompt deve essere utilizzato per inizializzare l'agente LLM all'inizio di ogni sessione o task complesso.
+
+#### 4. System Prompt:
+
+Sei l'Agente AI "Junior Partner" integrato nel flusso Extreme Programming del team. Il tuo obiettivo è la consegna di valore attraverso codice testato e modulare.
+
+Prima di ogni generazione:
+
+1. Identifica il Bounded Context del modulo attuale.
+2. Verifica che la logica di business sia protetta nel nucleo del dominio.
+3. Implementa l'idempotenza nei gestori eventi verificando l'identificativo univoco.
+4. Assicurati che il commit segua il formato Conventional Commits con lo scope del modulo corretto.
+5. Non generare codice infrastrutturale (DB, API) finché la logica di dominio non è validata dai test unitari.
+
+------
+
+### 19.5.3 Esempio di Input Operativo per l'Agente
+
+Per attivare correttamente l'agente su un nuovo requisito, utilizzare il seguente formato di input strutturato:
+
+**Input Task**:
+
+"Agente, implementa il requisito: 'Un intervento chirurgico non può essere avviato se la sala non è in stato Prenotata'.
+
+Scaffolding: Se necessario, usa lo strumento di generazione per il modulo 'sala-operatoria'.
+
+Specifica: Scrivi lo scenario BDD in linguaggio naturale in 'test/specifiche/avvio_intervento.feature'.
+
+Dominio: Implementa l'invariante nell'entità di dominio 'Sala' usando TDD.
+
+Tracciabilità: Assicurati che l'evento 'InterventoAvviato' propaghi correttamente il Correlation ID della richiesta.
+
+Verifica: Esegui i test unitari e conferma che la complessità cognitiva sia sotto la soglia di 15.
+
+Procedi in modalità Pair Programming: fermati dopo la scrittura dei test e attendi il mio feedback prima di procedere con l'implementazione.".
+
+---
 
 ### 20 Bibliografia
 
@@ -1049,6 +1133,7 @@ Il team accetta proposte dall'AI solo se verificate dalla pipeline (10.2). Se l'
 | v3.0 | 2025 | Riscrittura technology-agnostic. Aggiunta Extreme Programming. Aggiunta Infrastructure as Code. Aggiunta struttura di progetto. Aggiunta sezione anti-pattern. Corretti anti-pattern: relazione Clean/Hexagonal, applicazione CQRS, differenza eventi/comandi |
 | v4.0 | 2026 | Aggiunta ruolo Tech Lead e relazione stakeholder. Aggiunta versionamento semantico a due livelli con Conventional Commits e scope. Aggiunta tagging a due livelli (codice sorgente e immagine deployment). Aggiunta analisi complessita' cognitiva con soglie e pipeline completa. Aggiunto suggerimento automatico versionamento |
 | v5.0 | 2026 | Aggiunta sezione rischi operativi e sfide pratiche (barriera all'ingresso, boilerplate dominio puro, spaghetti events, metriche che mentono). Aggiunto Correlation ID e Causation ID come requisiti strutturali nella definizione degli eventi (sezione 6.3). Aggiunto test di mutazione nella pipeline e nelle metriche monitorate (sezioni 10.2, 10.3). Aggiunto modulo di riferimento e scaffolding CLI nella struttura di progetto (sezione 12.1). Aggiornato onboarding con progressione graduale dei concetti e pair obbligatorio quattro settimane (sezione 17.2). Aggiornata Definition of Done con mutation score e Correlation ID (sezione 17.3). Aggiunta deroga ADR per moduli di supporto senza logica di dominio. Aggiunto CQRS asimmetrico come strategia anti-boilerplate in P4 |
+| v5.1 | 2026 |	Aggiunta sezione 19.5: Configurazione IDE Agentico (Windsurf), regole locali, system prompt e input operativo.
 
 ---
 
