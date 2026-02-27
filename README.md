@@ -1,0 +1,1 @@
+# tech-citizen-software-development-manifesto
