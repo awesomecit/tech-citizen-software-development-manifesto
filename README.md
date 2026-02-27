@@ -1128,9 +1128,9 @@ Procedi in modalità Pair Programming: fermati dopo la scrittura dei test e atte
 
 | Versione | Data | Note |
 |---|---|---|
-| v1.0 | 2025 | Prima stesura -- cinque principi, regole operative, percorso di crescita |
-| v2.0 | 2025 | Aggiunta TDD/BDD/Spec-Driven Development, Trunk-Based con Feature Flags, moduli esportabili con porte e adattatori, test di portabilita' |
-| v3.0 | 2025 | Riscrittura technology-agnostic. Aggiunta Extreme Programming. Aggiunta Infrastructure as Code. Aggiunta struttura di progetto. Aggiunta sezione anti-pattern. Corretti anti-pattern: relazione Clean/Hexagonal, applicazione CQRS, differenza eventi/comandi |
+| v1.0 | 2026| Prima stesura -- cinque principi, regole operative, percorso di crescita |
+| v2.0 | 2026 | Aggiunta TDD/BDD/Spec-Driven Development, Trunk-Based con Feature Flags, moduli esportabili con porte e adattatori, test di portabilita' |
+| v3.0 | 2026 | Riscrittura technology-agnostic. Aggiunta Extreme Programming. Aggiunta Infrastructure as Code. Aggiunta struttura di progetto. Aggiunta sezione anti-pattern. Corretti anti-pattern: relazione Clean/Hexagonal, applicazione CQRS, differenza eventi/comandi |
 | v4.0 | 2026 | Aggiunta ruolo Tech Lead e relazione stakeholder. Aggiunta versionamento semantico a due livelli con Conventional Commits e scope. Aggiunta tagging a due livelli (codice sorgente e immagine deployment). Aggiunta analisi complessita' cognitiva con soglie e pipeline completa. Aggiunto suggerimento automatico versionamento |
 | v5.0 | 2026 | Aggiunta sezione rischi operativi e sfide pratiche (barriera all'ingresso, boilerplate dominio puro, spaghetti events, metriche che mentono). Aggiunto Correlation ID e Causation ID come requisiti strutturali nella definizione degli eventi (sezione 6.3). Aggiunto test di mutazione nella pipeline e nelle metriche monitorate (sezioni 10.2, 10.3). Aggiunto modulo di riferimento e scaffolding CLI nella struttura di progetto (sezione 12.1). Aggiornato onboarding con progressione graduale dei concetti e pair obbligatorio quattro settimane (sezione 17.2). Aggiornata Definition of Done con mutation score e Correlation ID (sezione 17.3). Aggiunta deroga ADR per moduli di supporto senza logica di dominio. Aggiunto CQRS asimmetrico come strategia anti-boilerplate in P4 |
 | v5.1 | 2026 |	Aggiunta sezione 19.5: Configurazione IDE Agentico (Windsurf), regole locali, system prompt e input operativo.
