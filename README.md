@@ -1122,6 +1122,65 @@ Procedi in modalità Pair Programming: fermati dopo la scrittura dei test e atte
   Prompt LLM per modellazione DDD e domain objects.
 - **Alshahani, A. et al.** (2025). *Code Refactoring with LLM Framework*. arXiv preprint arXiv:2511.21788 (v1). https://arxiv.org/html/2511.21788v1
   Framework LLM per refactoring con prompt engineering.
+
+Ecco la proposta per la nuova sezione **APPENDICE** da integrare nel tuo Manifesto. Questa sezione trasforma i principi teorici in una scelta tecnologica d'eccellenza, ottimizzata per le prestazioni e per l'interazione con l'IA.
+
+---
+
+## APPENDICE A: Stack Tecnologico di Riferimento (L'Ecosistema Node-Native)
+
+Mentre il Manifesto rimane agnostico rispetto alla tecnologia, questa appendice definisce lo stack "Golden Path" consigliato per implementare un Modular Monolith con il massimo dell'efficienza produttiva. La scelta di questo stack non è solo tecnica, ma strategica: si basa su tecnologie con **documentazione online estensiva e strutturata**, garantendo che gli agenti LLM (sezione 19) abbiano un'altissima precisione nella generazione del codice e nel troubleshooting.
+
+### A.1 Core Engine: Platformatic & Watt
+
+L'adozione di **Platformatic** e **Watt** permette di risolvere nativamente molte delle sfide strutturali descritte nel manifesto, specialmente riguardo alla separazione dei confini e all'automazione del boilerplate.
+
+* **Platformatic DB (Database First):** Permette di mappare il dominio partendo dal dato, generando automaticamente le capacità CRUD e le interfacce **OpenAPI/GraphQL** nativamente. Questo riduce drasticamente il boilerplate manuale, permettendo al team di concentrarsi esclusivamente sulla logica del Nucleo del Dominio.
+* **Fastify:** Scelto come motore sottostante per le sue performance Node-native e il sistema di plugin che si sposa perfettamente con l'architettura a moduli indipendenti.
+* **Watt & Orchestrazione:** Watt fornisce l'orchestrazione granulare necessaria per gestire servizi, frontend (React-Native/Expo) e proxy all'interno dello stesso monolite modulare, facilitando il percorso di crescita verso l'estrazione (sezione 16).
+
+### A.2 Strategia di Testing: "No-Mock" & Real Infrastructure
+
+In linea con la piramide dei test (sezione 7), lo stack promuove test deterministici e aderenti alla realtà operativa:
+
+* **TAP (Test Anything Protocol):** Un framework leggero, senza alterazioni globali del runtime, che garantisce test veloci e trasparenti.
+* **Testcontainers:** Utilizzati per i test di integrazione e end-to-end per avviare istanze reali di database e broker, eliminando i "flaky test" derivanti da mock incompleti.
+* **MSW (Mock Service Worker):** Per intercettare le chiamate di rete a livello di network, garantendo che il codice non sappia nemmeno di essere in un ambiente di test.
+* **Zero-Mock Philosophy:** Si prediligono gli "Infrastructure & Network Smoke Tests" rispetto ai mock, assicurando che se la pipeline è verde, il sistema funzionerà davvero in produzione.
+
+### A.3 Tabella delle Tecnologie e Vantaggi
+
+| Area | Tecnologia | Vantaggio Architetturale |
+| --- | --- | --- |
+| **Runtime** | Node.js (Fastify) | Performance e ottimizzazione scalabilità native. |
+| **API Layer** | OpenAPI Automatica | Documentazione vivente e contratti pronti per agenti IA. |
+| **Persistenza** | Platformatic DB | Mappatura immediata e gestione schemi automatizzata. |
+| **Messaggistica** | RabbitMQ / BullMQ | Implementazione robusta degli Eventi di Dominio (P3). |
+| **Caching** | Redis | Gestione stato distribuito e performance sulle query. |
+| **Logging** | Pino (Native) | Logging strutturato e performante già integrato in Fastify. |
+| **Osservabilità** | Grafana / Prometheus / APM | Monitoraggio completo del flusso di Correlation ID. |
+| **Logs** | Loki / ELK Stack | Centralizzazione e analisi dei log di sistema. |
+| **Mobile** | React-Native / Expo | Sviluppo cross-platform orchestrato tramite Watt. |
+
+### A.4 Deployment & Infrastructure as Code (IaC)
+
+L'infrastruttura segue rigorosamente i principi della sezione 11, utilizzando containerizzazione standardizzata:
+
+* **Container:** Docker & Docker Compose per lo sviluppo locale e la parità degli ambienti.
+* **Orchestrazione:** **Docker Swarm** per semplicità operativa iniziale o **k3s** per una gestione Kubernetes-light quando la complessità cresce.
+* **Tracciabilità:** Ogni container è etichettato con la versione semantica e il commit ID come prescritto dalla sezione 9.4.
+
+---
+
+### A.5 Scelta Architetturale: "AI-Ready Documentation"
+
+Una decisione chiave nel definire questo stack è la **reperibilità delle informazioni**. Platformatic, Fastify e l'ecosistema circostante possiedono documentazione tecnica di altissima qualità e una presenza massiccia in forum e repository pubblici. Questo fattore è determinante perché:
+
+1. Aumenta la capacità degli LLM di generare codice corretto al primo tentativo.
+2. Facilita il "Context Injection" descritto nella sezione 19.2.
+3. Riduce il tempo di onboarding dei nuovi membri, che possono contare su un partner IA estremamente competente su queste specifiche librerie.
+
+---
   
 
 ## Changelog
@@ -1134,6 +1193,8 @@ Procedi in modalità Pair Programming: fermati dopo la scrittura dei test e atte
 | v4.0 | 2026 | Aggiunta ruolo Tech Lead e relazione stakeholder. Aggiunta versionamento semantico a due livelli con Conventional Commits e scope. Aggiunta tagging a due livelli (codice sorgente e immagine deployment). Aggiunta analisi complessita' cognitiva con soglie e pipeline completa. Aggiunto suggerimento automatico versionamento |
 | v5.0 | 2026 | Aggiunta sezione rischi operativi e sfide pratiche (barriera all'ingresso, boilerplate dominio puro, spaghetti events, metriche che mentono). Aggiunto Correlation ID e Causation ID come requisiti strutturali nella definizione degli eventi (sezione 6.3). Aggiunto test di mutazione nella pipeline e nelle metriche monitorate (sezioni 10.2, 10.3). Aggiunto modulo di riferimento e scaffolding CLI nella struttura di progetto (sezione 12.1). Aggiornato onboarding con progressione graduale dei concetti e pair obbligatorio quattro settimane (sezione 17.2). Aggiornata Definition of Done con mutation score e Correlation ID (sezione 17.3). Aggiunta deroga ADR per moduli di supporto senza logica di dominio. Aggiunto CQRS asimmetrico come strategia anti-boilerplate in P4 |
 | v5.1 | 2026 |	Aggiunta sezione 19.5: Configurazione IDE Agentico (Windsurf), regole locali, system prompt e input operativo.
+| v5.2 | 2026 |	Aggiunta sezione 20: Bibliografia
+| v5.3 | 2026 |	Aggiunta sezione APPENDICE A: Stack Tecnologico di Riferimento (L'Ecosistema Node-Native)
 
 ---
 
