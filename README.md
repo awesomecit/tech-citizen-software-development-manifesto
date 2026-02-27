@@ -2,7 +2,7 @@
 
 > "L'architettura non e' cio' che costruiamo oggi. E' cio' che rendiamo possibile domani senza rimpiangere le scelte di ieri."
 
-**Versione 5.0 -- 2026**
+**Versione 5.4 -- 2026**
 
 **Autore:** Antonio Cittadino -- awesome.cit.dev@gmail.com
 
@@ -34,6 +34,9 @@ Questo documento definisce lo stile architetturale e la metodologia di sviluppo 
 18. Boost allo sviluppo con agenti LLM
 19. AI-Augmented Development: Agenti e Architettura
 20. Bibliografia
+21. APPENDICE A
+22. BONUS
+23. CHANGELOG
 
 ---
 
@@ -1127,7 +1130,7 @@ Ecco la proposta per la nuova sezione **APPENDICE** da integrare nel tuo Manifes
 
 ---
 
-## APPENDICE A: Stack Tecnologico di Riferimento (L'Ecosistema Node-Native)
+## 21 APPENDICE A: Stack Tecnologico di Riferimento (L'Ecosistema Node-Native)
 
 Mentre il Manifesto rimane agnostico rispetto alla tecnologia, questa appendice definisce lo stack "Golden Path" consigliato per implementare un Modular Monolith con il massimo dell'efficienza produttiva. La scelta di questo stack non è solo tecnica, ma strategica: si basa su tecnologie con **documentazione online estensiva e strutturata**, garantendo che gli agenti LLM (sezione 19) abbiano un'altissima precisione nella generazione del codice e nel troubleshooting.
 
@@ -1181,9 +1184,21 @@ Una decisione chiave nel definire questo stack è la **reperibilità delle infor
 3. Riduce il tempo di onboarding dei nuovi membri, che possono contare su un partner IA estremamente competente su queste specifiche librerie.
 
 ---
+
+## 22 BONUS: Modular Catshire Citadel (Spinoff On-Premise)
+
+L'evoluzione naturale di questo Manifesto, applicata a un ecosistema on-premise e potenziata dall'Intelligenza Artificiale locale, prende vita nella **Modular Catshire Citadel**.
+
+Si tratta di un *blueprint operativo* (uno spinoff di questo Manifesto) progettato per team che richiedono sovranità assoluta sui dati e massima velocità di esecuzione. La Cittadella si propone di integrare lo stack Node-native consigliato (Platformatic, Fastify, Watt) con agenti AI locali (Lo Stregatto / Cheshire Cat via Ollama) che agiscono da guardiani dei confini architetturali e partner nel Pair Programming.
+
+In questo ecosistema, l'Intelligenza Artificiale diventa un vincolo fisico che impedisce la creazione di debito tecnico, bloccando proattivamente il codice che viola i *Bounded Context* o che inquina il nucleo del dominio.
+
+**[Scopri il blueprint completo della Modular Catshire Citadel](https://github.com/awesomecit/tech-citizen-software-development-manifesto/blob/main/MODULAR_CATSHIRE_CITADEL.md)**
+
+---
   
 
-## Changelog
+## 23 Changelog
 
 | Versione | Data | Note |
 |---|---|---|
@@ -1193,8 +1208,10 @@ Una decisione chiave nel definire questo stack è la **reperibilità delle infor
 | v4.0 | 2026 | Aggiunta ruolo Tech Lead e relazione stakeholder. Aggiunta versionamento semantico a due livelli con Conventional Commits e scope. Aggiunta tagging a due livelli (codice sorgente e immagine deployment). Aggiunta analisi complessita' cognitiva con soglie e pipeline completa. Aggiunto suggerimento automatico versionamento |
 | v5.0 | 2026 | Aggiunta sezione rischi operativi e sfide pratiche (barriera all'ingresso, boilerplate dominio puro, spaghetti events, metriche che mentono). Aggiunto Correlation ID e Causation ID come requisiti strutturali nella definizione degli eventi (sezione 6.3). Aggiunto test di mutazione nella pipeline e nelle metriche monitorate (sezioni 10.2, 10.3). Aggiunto modulo di riferimento e scaffolding CLI nella struttura di progetto (sezione 12.1). Aggiornato onboarding con progressione graduale dei concetti e pair obbligatorio quattro settimane (sezione 17.2). Aggiornata Definition of Done con mutation score e Correlation ID (sezione 17.3). Aggiunta deroga ADR per moduli di supporto senza logica di dominio. Aggiunto CQRS asimmetrico come strategia anti-boilerplate in P4 |
 | v5.1 | 2026 |	Aggiunta sezione 19.5: Configurazione IDE Agentico (Windsurf), regole locali, system prompt e input operativo.
-| v5.2 | 2026 |	Aggiunta sezione 20: Bibliografia
-| v5.3 | 2026 |	Aggiunta sezione APPENDICE A: Stack Tecnologico di Riferimento (L'Ecosistema Node-Native)
+| v5.2 | 2026 |	Aggiunta sezione 20: Bibliografia.
+| v5.3 | 2026 |	Aggiunta sezione APPENDICE A: Stack Tecnologico di Riferimento (L'Ecosistema Node-Native).
+| v5.4 | 2026 |	Aggiunta sezione BONUS: Modular Catshire Citadel.
+
 
 ---
 
